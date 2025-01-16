@@ -11,15 +11,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout Code
         uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
 
       - name: Install HTMLHint
         run: npm install --save-dev htmlhint
-      - name: Lint All CSS Files
-        run: npx htmlhint "**/*.css"
+
+      - name: Lint All HTML Files
+        run: npx htmlhint "**/*.html"
 
       - name: Install StyleLint
         run: npm install --save-dev stylelint
+
       - name: Lint All CSS Files
         run: npx stylelint "**/*.css"
